@@ -1,73 +1,68 @@
-# Welcome to your Lovable project
+# 🌐 TechMADS
 
-## Project info
+Welcome to **TechMADS** — *Technology Meets Meaningful Advancement in Design & Sustainability.*
 
-**URL**: https://lovable.dev/projects/fd7d6a01-fc91-4a7f-8295-75f1d24b7847
+We are a forward-thinking digital solutions company committed to transforming the future with intelligent design, purposeful innovation, and social impact. From smart systems to sustainable platforms, TechMADS is on a mission to build experiences that matter.
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## 🚀 What We Do
 
-**Use Lovable**
+- ♻️ **Rewear Community Platform**  
+  A vibrant and professional platform to exchange pre-loved clothes, making fashion circular, inclusive, and affordable.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/fd7d6a01-fc91-4a7f-8295-75f1d24b7847) and start prompting.
+- 🌱 **Carbon Footprint Tracker (CFT)**  
+  An intelligent multi-platform tool for individuals and industries to track, reduce, and share their carbon emissions footprint.
 
-Changes made via Lovable will be committed automatically to this repo.
+- 🏡 **Smart IoT Energy Switches**  
+  Real-time appliance monitoring and energy usage tracking for modern eco-conscious homes.
 
-**Use your preferred IDE**
+- 🎶 **TamilTune Music Lab**  
+  A culturally rich music platform with virtual instruments and interactive keyboard notes for every track.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- 📚 **EduVerse by TechMADS**  
+  An immersive AI-driven education platform with simulators, compilers, live classes, and tailored prep tools (NEET, JEE, GATE, and more).
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+---
 
-Follow these steps:
+## 🧠 Why TechMADS?
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+- 🌍 Purpose-led innovation  
+- 🎨 Clean, intuitive, responsive UI/UX  
+- 📊 Scalable cloud-based architecture  
+- 🛠️ Built with modern stacks: `Next.js`, `Node.js`, `MongoDB`, `Tailwind CSS`, `Three.js`, `Jetpack Compose`, `Flutter`, and more.
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+---
 
-# Step 3: Install the necessary dependencies.
-npm i
+## 📦 Tech Stack Highlights
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+- **Frontend**: Next.js, React, Tailwind CSS, Three.js  
+- **Backend**: Node.js, Express, MongoDB  
+- **Mobile/Desktop**: Flutter, Jetpack Compose  
+- **Design & Prototyping**: Figma  
+- **DevOps & Deployment**: Vercel, Firebase, Render, Netlify  
 
-**Edit a file directly in GitHub**
+---
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🤝 Let's Connect
 
-**Use GitHub Codespaces**
+> “TechMADS isn’t just about code — it's about creating a sustainable digital world, one project at a time.”
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- 💡 Need a custom project?  
+- 🧪 Want to collaborate on a hackathon?  
+- 🧵 Interested in our rewear initiative?
 
-## What technologies are used for this project?
+Let’s build something meaningful together.
 
-This project is built with:
+---
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### 🔗 Contact
 
-## How can I deploy this project?
+**Email**: hello@techmads.in  
+**Website**: [Coming Soon]  
+**Instagram**: [@techmads.in](https://instagram.com/techmads.in)  
+**LinkedIn**: [TechMADS Team](https://linkedin.com)
 
-Simply open [Lovable](https://lovable.dev/projects/fd7d6a01-fc91-4a7f-8295-75f1d24b7847) and click on Share -> Publish.
+---
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+> ⚡ Built with ❤️ by the TechMADS Team

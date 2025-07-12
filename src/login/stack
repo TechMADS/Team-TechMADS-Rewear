@@ -1,0 +1,485 @@
+'use client';
+
+import { useState } from 'react';
+import Image from 'next/image';
+
+export default function Login() {
+  const [form, setForm] = useState({ email: '', password: '' });
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(form);
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-[#F6F4EF] relative">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <Image
+          src="/logo.png" // 🔁 Replace with your actual textile background image in public/
+          alt="textile background"
+          layout="fill"
+          objectFit="cover"
+          className="opacity-20"
+        />
+      </div>
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-[#F6F4EF] bg-opacity-90 backdrop-blur-sm"></div>
+
+      {/* Login Box */}
+      <div className="relative z-10 w-full max-w-md p-8 bg-white shadow-2xl rounded-2xl border border-[#D9D9D9]">
+        {/* Logo */}
+        <div className="flex justify-center mb-6">
+          <Image
+            src="/logo.png" // 🔁 Replace with your textile company logo in public/
+            alt="Logo"
+            width={120}
+            height={120}
+            className="rounded-full"
+          />
+        </div>
+
+        <h2 className="text-3xl font-bold text-center text-[#1E5631] mb-2">Welcome Back</h2>
+        <p className="text-center text-[#2E2E2E] text-sm mb-6">Sign in to continue to your textile dashboard</p>
+
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <div>
+            <label htmlFor="email" className="block text-[#2E2E2E] mb-1 font-medium">
+              Email Address
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 border border-[#D9D9D9] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A7C957]"
+              placeholder="you@example.com"
+            />
+          </div>
+          <div>
+            <label htmlFor="password" className="block text-[#2E2E2E] mb-1 font-medium">
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              value={form.password}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 border border-[#D9D9D9] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A7C957]"
+              placeholder="Enter your password"
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-[#00A0DC] hover:bg-[#008fc4] text-white font-semibold py-2 rounded-lg transition duration-200"
+          >
+            Sign In
+          </button>
+        </form>
+
+        <p className="text-sm text-center text-[#2E2E2E] mt-6">
+          Don’t have an account?{' '}
+          <a href="/register" className="text-[#A7C957] font-medium hover:underline">
+            Register
+          </a>
+        </p>
+      </div>
+    </div>
+  );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'use client';
+
+import { useState } from 'react';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import toast, { Toaster } from 'react-hot-toast';
+import { motion } from 'framer-motion';
+
+const translations = {
+  en: {
+    welcome: 'Welcome Back',
+    desc: 'Sign in to continue to your textile dashboard',
+    email: 'Email Address',
+    password: 'Password',
+    signin: 'Sign In',
+    noAccount: 'Don’t have an account?',
+    register: 'Register',
+  },
+  ta: {
+    welcome: 'மீண்டும் வரவேற்கிறோம்',
+    desc: 'உங்கள் துணிக்கடைக் கணக்கில் நுழையவும்',
+    email: 'மின்னஞ்சல் முகவரி',
+    password: 'கடவுச்சொல்',
+    signin: 'உள்நுழைக',
+    noAccount: 'கணக்கு இல்லையா?',
+    register: 'பதிவு செய்க',
+  },
+};
+
+export default function Login() {
+  const [form, setForm] = useState({ email: '', password: '' });
+  const [showPassword, setShowPassword] = useState(false);
+  const [lang, setLang] = useState('en');
+  const t = translations[lang];
+  const router = useRouter();
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const togglePassword = () => setShowPassword(!showPassword);
+  const toggleLang = () => setLang(lang === 'en' ? 'ta' : 'en');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!form.email || !form.password) {
+      toast.error('Please fill in all fields');
+      return;
+    }
+
+    try {
+      // Replace with actual API call
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) throw new Error('Invalid credentials');
+      toast.success('Login Successful!');
+      setTimeout(() => router.push('/dashboard'), 1500);
+    } catch (err) {
+      toast.error(err.message || 'Login failed');
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-cream dark:bg-[#121212] flex items-center justify-center relative">
+      <Toaster position="top-center" reverseOrder={false} />
+
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <Image
+          src="/fabric-bg.jpg"
+          alt="background"
+          layout="fill"
+          objectFit="cover"
+          className="opacity-20"
+        />
+      </div>
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-cream dark:bg-[#121212] bg-opacity-80 backdrop-blur-sm"></div>
+
+      {/* Login Card */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 40 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="relative z-10 w-full max-w-md p-8 bg-white dark:bg-[#1f1f1f] shadow-2xl rounded-2xl border border-mist dark:border-[#333]"
+      >
+        {/* Logo */}
+        <div className="flex justify-center mb-6">
+          <Image
+            src="/logo-textile.png"
+            alt="Textile Logo"
+            width={80}
+            height={80}
+          />
+        </div>
+
+        {/* Language and Dark Mode Toggle */}
+        <div className="flex justify-between mb-4 text-sm">
+          <button onClick={toggleLang} className="text-mint hover:underline">
+            {lang === 'en' ? 'தமிழில் படிக்க' : 'Read in English'}
+          </button>
+          <button
+            onClick={() =>
+              document.documentElement.classList.toggle('dark')
+            }
+            className="text-skyblue hover:underline"
+          >
+            Toggle {document.documentElement.classList.contains('dark') ? 'Light' : 'Dark'} Mode
+          </button>
+        </div>
+
+        <h2 className="text-2xl font-bold text-center text-forest dark:text-mint mb-2">
+          {t.welcome}
+        </h2>
+        <p className="text-center text-charcoal dark:text-gray-300 mb-6 text-sm">
+          {t.desc}
+        </p>
+
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <div>
+            <label className="block text-charcoal dark:text-gray-200 mb-1 font-medium">
+              {t.email}
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-mist rounded-lg dark:bg-[#2c2c2c] dark:text-white focus:ring-2 focus:ring-mint focus:outline-none"
+              placeholder="you@example.com"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-charcoal dark:text-gray-200 mb-1 font-medium">
+              {t.password}
+            </label>
+            <div className="relative">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                value={form.password}
+                onChange={handleChange}
+                className="w-full px-4 py-2 border border-mist rounded-lg dark:bg-[#2c2c2c] dark:text-white focus:ring-2 focus:ring-mint focus:outline-none"
+                placeholder="••••••••"
+                required
+              />
+              <button
+                type="button"
+                onClick={togglePassword}
+                className="absolute top-2.5 right-3 text-sm text-skyblue hover:underline"
+              >
+                {showPassword ? 'Hide' : 'Show'}
+              </button>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-skyblue hover:bg-[#008fc4] text-white font-semibold py-2 rounded-lg transition duration-200"
+          >
+            {t.signin}
+          </button>
+        </form>
+
+        <p className="text-sm text-center text-charcoal dark:text-gray-300 mt-6">
+          {t.noAccount}{' '}
+          <a href="/register" className="text-mint hover:underline font-medium">
+            {t.register}
+          </a>
+        </p>
+      </motion.div>
+    </div>
+  );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'use client';
+
+import { useState } from 'react';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import toast, { Toaster } from 'react-hot-toast';
+import { motion } from 'framer-motion';
+
+const translations = {
+  en: {
+    welcome: 'Welcome Back',
+    desc: 'Sign in to continue to your textile dashboard',
+    email: 'Email Address',
+    password: 'Password',
+    signin: 'Sign In',
+    noAccount: 'Don’t have an account?',
+    register: 'Register',
+  },
+  ta: {
+    welcome: 'மீண்டும் வரவேற்கிறோம்',
+    desc: 'உங்கள் துணிக்கடைக் கணக்கில் நுழையவும்',
+    email: 'மின்னஞ்சல் முகவரி',
+    password: 'கடவுச்சொல்',
+    signin: 'உள்நுழைக',
+    noAccount: 'கணக்கு இல்லையா?',
+    register: 'பதிவு செய்க',
+  },
+};
+
+export default function Login() {
+  const [form, setForm] = useState({ email: '', password: '' });
+  const [showPassword, setShowPassword] = useState(false);
+  const [lang, setLang] = useState('en');
+  const t = translations[lang];
+  const router = useRouter();
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const togglePassword = () => setShowPassword(!showPassword);
+  const toggleLang = () => setLang(lang === 'en' ? 'ta' : 'en');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!form.email || !form.password) {
+      toast.error('Please fill in all fields');
+      return;
+    }
+
+    try {
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) throw new Error('Invalid credentials');
+      toast.success('Login Successful!');
+      setTimeout(() => router.push('/dashboard'), 1500);
+    } catch (err) {
+      toast.error(err.message || 'Login failed');
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-cream flex items-center justify-center relative">
+      <Toaster position="top-center" reverseOrder={false} />
+
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <Image
+          src="/fabric-bg.jpg"
+          alt="background"
+          layout="fill"
+          objectFit="cover"
+          className="opacity-20"
+        />
+      </div>
+
+      {/* Cream Overlay */}
+      <div className="absolute inset-0 bg-cream bg-opacity-90 backdrop-blur-md"></div>
+
+      {/* Login Card */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 40 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="relative z-10 w-full max-w-md p-8 bg-white shadow-2xl rounded-2xl border border-mist"
+      >
+        {/* Logo */}
+        <div className="flex justify-center mb-6">
+          <Image
+            src="/logo-textile.png"
+            alt="Textile Logo"
+            width={80}
+            height={80}
+          />
+        </div>
+
+        {/* Language Switch */}
+        <div className="flex justify-end mb-4 text-sm">
+          <button onClick={toggleLang} className="text-mint hover:underline">
+            {lang === 'en' ? 'தமிழில் படிக்க' : 'Read in English'}
+          </button>
+        </div>
+
+        <h2 className="text-3xl font-bold text-center text-forest mb-2">
+          {t.welcome}
+        </h2>
+        <p className="text-center text-charcoal mb-6 text-sm">{t.desc}</p>
+
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <div>
+            <label className="block text-charcoal mb-1 font-medium">{t.email}</label>
+            <input
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-mist rounded-lg focus:ring-2 focus:ring-mint focus:outline-none"
+              placeholder="you@example.com"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-charcoal mb-1 font-medium">{t.password}</label>
+            <div className="relative">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                value={form.password}
+                onChange={handleChange}
+                className="w-full px-4 py-2 border border-mist rounded-lg focus:ring-2 focus:ring-mint focus:outline-none"
+                placeholder="••••••••"
+                required
+              />
+              <button
+                type="button"
+                onClick={togglePassword}
+                className="absolute top-2.5 right-3 text-sm text-skyblue hover:underline"
+              >
+                {showPassword ? 'Hide' : 'Show'}
+              </button>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-skyblue hover:bg-[#008fc4] text-white font-semibold py-2 rounded-lg transition duration-200"
+          >
+            {t.signin}
+          </button>
+        </form>
+
+        <p className="text-sm text-center text-charcoal mt-6">
+          {t.noAccount}{' '}
+          <a href="/register" className="text-mint hover:underline font-medium">
+            {t.register}
+          </a>
+        </p>
+      </motion.div>
+    </div>
+  );
+}
